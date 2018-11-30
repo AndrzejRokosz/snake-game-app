@@ -5,7 +5,7 @@ const style = {
     display: "flex",
     justifyContent: 'center',
     alignItems: "center",
-    // flexBasis: "10%"
+   
 }
 
 
