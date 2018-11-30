@@ -2,27 +2,49 @@ import React from 'react'
 import GameBoard from './GameBoard'
 
 class Snake extends React.Component {
-    state = {
-        gameBoard: (
-            Array(this.props.boardDimension)
-                .fill(Array(this.props.boardDimension)
-                    .fill(1))
-        ),
-        snakes: [
-            [
-                { x: 5, y: 5 },
-                { x: 5, y: 6 }
+    constructor(props) {
+        super()
+        this.intervalId=null
+        const halfBoardDimension = Math.ceil(props.boardDimension / 2)-1
+        this.state = {
+            gameBoard: (
+                Array(props.boardDimension)
+                    .fill(Array(props.boardDimension)
+                        .fill(1))
+            ),
+            snakes: [
+                [
+                    { x: halfBoardDimension + 2, y: halfBoardDimension },
+                    { x: halfBoardDimension+1, y: halfBoardDimension }
+                ],
+                [
+                    { x: halfBoardDimension - 2, y: halfBoardDimension },
+                    { x: halfBoardDimension - 1, y: halfBoardDimension }
+                ]
             ],
-            [
-                { x: 0, y: 0 }
-            ]
-        ],
-        meals:[
-            {x:2,y:3}
-        ]
+            meals: [
+              
+            ],
+            directions:[
+                'right',
+                'left'
+            ],
+            currentPlayerIndex:0
 
+        }
+    }
+    gameTick=()=>{
+        console.log("tick")
+    }
+    componentDidMount(){
+            this.intervalId=setInterval(
+                this.gameTick,1000
+            )
     }
 
+    componentWillUnmount(){
+        clearInterval(this.intervalId)
+    }
     composeGameBoard = () => {
         const gameBoardCopy = JSON.parse(JSON.stringify(this.state.gameBoard))
 
@@ -34,10 +56,10 @@ class Snake extends React.Component {
                 ))
             ))
 
-            this.state.meals.forEach(mealPosition => (
-                gameBoardCopy[mealPosition.y][mealPosition.x] = 'F'
-            ))
-            
+        this.state.meals.forEach(mealPosition => (
+            gameBoardCopy[mealPosition.y][mealPosition.x] = 'F'
+        ))
+
         return gameBoardCopy
     }
 
