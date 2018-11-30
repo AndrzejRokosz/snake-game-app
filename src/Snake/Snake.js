@@ -1,5 +1,5 @@
 import React from 'react'
-
+import GameBoard from './GameBoard'
 
 class Snake extends React.Component {
     state = {
@@ -10,10 +10,19 @@ class Snake extends React.Component {
         )
     }
     render() {
+        const gameBoard = JSON.parse(JSON.stringify(this.state.gameBoard))//kopia gameBoarda
+
+
         return (
 
             <div>
+                {
+                    <GameBoard
+                        gameBoard={gameBoard}
 
+                    />
+
+                }
             </div>
         )
     }
