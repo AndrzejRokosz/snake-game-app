@@ -14,14 +14,11 @@ class Snake extends React.Component {
 
 
         return (
-
             <div>
                 {
                     <GameBoard
                         gameBoard={gameBoard}
-
                     />
-
                 }
             </div>
         )
