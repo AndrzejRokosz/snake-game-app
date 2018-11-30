@@ -27,9 +27,7 @@ class Snake extends React.Component {
         )
     }
 }
-
-
-Snake.defaultProps = {
+Snake.defaultProps = {//export default propsow
     //@TODO it should be checked if bigger than 5 
     boardDimension: 10
 }
